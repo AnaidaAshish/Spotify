@@ -30,15 +30,16 @@ const SpotifyMain = () => {
       console.error(error);
     }
   };
-  // useEffect(() => {
-  //   GetMusic(albums);
-  // }, [albums]);
-
-  <div>
-    <h1>Spotify</h1>
-    <input type="text" placeholder="Enter your song..." />
-    <button onClick={() => GetMusic(albums.items)}>Get Song</button>
-  </div>;
+  useEffect(() => {
+    GetMusic(albums);
+  }, [albums]);
+  return (
+    <div>
+      <h1>Spotify</h1>
+      <input type="text" placeholder="Enter your song..." />
+      <button onClick={() => GetMusic(albums.items)}>Get Song</button>
+    </div>
+  );
 };
 
 export default SpotifyMain;

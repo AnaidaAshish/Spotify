@@ -1,12 +1,13 @@
 .App {
   text-align: center;
   padding: 20px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 h1 {
-  color: #1db954; /* Spotify Green */
-}
-
+  color: #1db954;   /* Spotify Green  */
+} 
+ 
 form {
   margin-bottom: 20px;
 }
@@ -77,6 +78,11 @@ button {
   padding: 10px;
   border-radius: 10px;
   text-align: center;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .result-card img {
@@ -92,3 +98,9 @@ button {
   max-width: 100%;
   border-radius: 10px;
 }
+
+
+
+
+/* .result-card {
+} */

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import "./App.css";
+import { ThemeContext } from "./Components/ThemeContext";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -11,6 +12,7 @@ function App() {
   const [songDetails, setSongDetails] = useState(null);
   const [error, setError] = useState("");
   const rapidApiKey = "d33b2da361msh306a82ab316e56cp1b6e4djsnda6c1a435eb6";
+  const { state: themeState, dispatch } = useContext(ThemeContext);
 
   // Search for tracks and artists
   const handleSearch = async (e) => {
@@ -137,16 +139,44 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App"
+    style={{
+      backgroundColor: themeState.theme === "light" ? "#fff" : "#333",
+      color: themeState.theme === "light" ? "#000" : "#fff",
+    }}>
+      
+      <header>
       <h1>Spotify Music Search</h1>
+      <button
+          onClick={() => dispatch({ type: "TOGGLE_THEME" })}
+          style={{
+            padding: "10px 20px",
+            margin: "10px",
+            backgroundColor: themeState.theme === "light" ? "#000" : "#fff",
+            color: themeState.theme === "light" ? "#fff" : "#000",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Toggle Theme
+        </button>
+        </header>
       <form onSubmit={handleSearch}>
         <input
           type="text"
           placeholder="Search for songs or artists..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          style={{
+            padding: "10px",
+            margin: "10px 0",
+            width: "80%",
+            border: "1px solid #ccc",
+            borderRadius: "5px",
+          }}
         />
-        <button type="submit">Search</button>
+        <button type="submit" style={{ padding: "10px 20px", cursor: "pointer" }}>Search</button>
       </form>
       <div className="results">
         {results.length > 0 &&
